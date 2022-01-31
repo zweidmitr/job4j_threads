@@ -5,7 +5,7 @@ public class Wget {
         Thread first = new Thread(
                 () -> {
                     try {
-                        for(int index = 0; index <= 100; index++) {
+                        for (int index = 0; index <= 100; index++) {
                             System.out.println("\rLoading : " + index + "%");
                             Thread.sleep(1000);
                         }
@@ -15,7 +15,5 @@ public class Wget {
                 }
         );
         first.start();
-
-
     }
 }
