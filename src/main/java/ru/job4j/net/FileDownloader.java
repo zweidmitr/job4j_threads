@@ -10,9 +10,9 @@ public class FileDownloader {
         String file = "https://raw.githubusercontent.com/peterarsentev/course_test/master/pom.xml";
         try (BufferedInputStream in = new BufferedInputStream(new URL(file).openStream());
              FileOutputStream fileOutputstream = new FileOutputStream("pom_tmp.xml")) {
-            byte[]  dataBuffer = new byte[1024];
+            byte[] dataBuffer = new byte[1024];
             int byteRead;
-            while ((byteRead = in.read(dataBuffer,0,1024)) != -1) {
+            while ((byteRead = in.read(dataBuffer, 0, 1024)) != -1) {
                 fileOutputstream.write(dataBuffer, 0, byteRead);
                 Thread.sleep(1000);
             }
