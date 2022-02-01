@@ -6,23 +6,23 @@ public class ConsoleProgress implements Runnable {
         String[] process = {"-", "\\", "|", "/"};
         int temp = 0;
         while (!Thread.currentThread().isInterrupted()) {
-            System.out.println("\r Loading: " + process[temp++]);
-            if (temp > 3) {
-                temp = 0;
-            }
             try {
-                Thread.sleep(500);
+                System.out.print("\rLoading: " + process[temp++]);
+                Thread.sleep(250);
+
+                if (temp > process.length - 1) {
+                    temp = 0;
+                }
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
-
     }
 
     public static void main(String[] args) throws InterruptedException {
         Thread progress = new Thread(new ConsoleProgress());
         progress.start();
-        Thread.sleep(1000);
+        Thread.sleep(7000);
         progress.interrupt();
     }
 }
