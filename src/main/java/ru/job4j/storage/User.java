@@ -5,7 +5,7 @@ import net.jcip.annotations.ThreadSafe;
 
 @ThreadSafe
 public class User {
-    private final int id;
+    private int id;
     @GuardedBy("this")
     private int amount;
 
@@ -22,17 +22,12 @@ public class User {
         return this.amount;
     }
 
-    public synchronized void plusAmount(int money) {
-        this.amount += money;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public synchronized boolean minusAmount(int money) {
-        boolean result = false;
-        if (this.amount > money) {
-            this.amount -= money;
-            result = true;
-        }
-        return result;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     @Override

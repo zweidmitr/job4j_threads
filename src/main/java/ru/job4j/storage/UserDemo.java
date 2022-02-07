@@ -5,10 +5,14 @@ public class UserDemo {
         UserStore stoge = new UserStore();
         User small = new User(1, 100);
         User big = new User(2, 200);
-        stoge.add(small);
+        System.out.println("user add? - " + stoge.add(small));
         stoge.add(big);
-        stoge.transfer(1, 2, 50);
+        System.out.println("transfer is ok? - "
+                + stoge.transfer(1, 2, 50));
         System.out.println(small);
         System.out.println(big);
+        System.out.println("is user updated? - " + stoge.update(small));
+        System.out.println("is user deleted? - "
+                + stoge.delete(small));
     }
 }

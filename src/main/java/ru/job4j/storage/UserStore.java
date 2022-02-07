@@ -11,18 +11,27 @@ public class UserStore {
     @GuardedBy("this")
     private Map<Integer, User> map = new HashMap();
 
-    public synchronized void add(User user) {
-        map.put(user.getId(), user);
+    public synchronized boolean add(User user) {
+        return map.putIfAbsent(user.getId(), user) == null;
     }
 
-    public synchronized void delete(User user) {
-        map.remove(user.getId());
+    public synchronized boolean update(User user) {
+        return map.replace(user.getId(), user) != null;
     }
 
-    public synchronized void transfer(int fromId, int toId, int amount) {
+    public synchronized boolean delete(User user) {
+        return map.remove(user.getId(), user);
+    }
+
+    public synchronized boolean transfer(int fromId, int toId, int amount) {
+        boolean result = false;
         User minus = map.get(fromId);
         User plus = map.get(toId);
-        minus.minusAmount(amount);
-        plus.plusAmount(amount);
+        if (minus != null && plus != null && minus.getAmount() > amount) {
+            minus.setAmount(minus.getAmount() - amount);
+            plus.setAmount(plus.getAmount() + amount);
+            result = true;
+        }
+        return result;
     }
 }
