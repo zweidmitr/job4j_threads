@@ -1,4 +1,4 @@
-package ru.job4j.userStorage;
+package ru.job4j.storage;
 
 import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
@@ -37,9 +37,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", amount=" + amount +
-                '}';
+        return "User{"
+                + "id=" + id
+                + ", amount=" + amount
+                + '}';
     }
 }

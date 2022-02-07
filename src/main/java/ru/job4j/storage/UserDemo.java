@@ -1,4 +1,4 @@
-package ru.job4j.userStorage;
+package ru.job4j.storage;
 
 public class UserDemo {
     public static void main(String[] args) {
