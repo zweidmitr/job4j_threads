@@ -2,7 +2,7 @@ package ru.job4j.wait;
 
 public class SimpleBlockDemo {
     public static void main(String[] args) throws InterruptedException {
-        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue();
+        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue(5);
         Thread master = new Thread(
                 () -> {
                     System.out.println(Thread.currentThread().getName() + " STARTED");

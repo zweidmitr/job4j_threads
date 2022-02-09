@@ -8,8 +8,16 @@ import java.util.Queue;
 public class SimpleBlockingQueue<T> {
     @GuardedBy("this")
     private final Queue<T> queue = new LinkedList<>();
+    private final int maxCapacity;
+
+    public SimpleBlockingQueue(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
 
     public synchronized void offer(T value) throws InterruptedException {
+        if (maxCapacity == queue.size()) {
+            wait();
+        }
         queue.add(value);
         notifyAll();
     }
