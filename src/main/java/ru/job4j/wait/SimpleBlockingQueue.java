@@ -14,9 +14,13 @@ public class SimpleBlockingQueue<T> {
         this.maxCapacity = maxCapacity;
     }
 
-    public synchronized void offer(T value) throws InterruptedException {
+    public synchronized void offer(T value) {
         if (maxCapacity == queue.size()) {
-            wait();
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         queue.add(value);
         notifyAll();
@@ -28,6 +32,14 @@ public class SimpleBlockingQueue<T> {
         }
         T result = queue.poll();
         notifyAll();
+        return result;
+    }
+
+    public synchronized boolean isEmpty() {
+        boolean result = false;
+        if (queue.isEmpty()) {
+            result = true;
+        }
         return result;
     }
 }
