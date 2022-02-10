@@ -4,18 +4,13 @@ package ru.job4j.buffer;
 import ru.job4j.wait.SimpleBlockingQueue;
 
 public class ParallelSearch {
-    private static final Object LOCK = new Object();
-
     public static void main(String[] args) throws InterruptedException {
-        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<Integer>(5);
+        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(5);
         final Thread consumer = new Thread(
                 () -> {
-                    while (true) {
+                    while (!Thread.currentThread().isInterrupted()) {
                         try {
                             System.out.println(queue.poll());
-                            synchronized (LOCK) {
-                                LOCK.wait();
-                            }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                             Thread.currentThread().interrupt();
@@ -29,8 +24,8 @@ public class ParallelSearch {
                     for (int index = 0; index != 3; index++) {
                         try {
                             queue.offer(index);
-                            synchronized (LOCK) {
-                                LOCK.notifyAll();
+                            if (index == 2) {
+                                consumer.interrupt();
                             }
                             Thread.sleep(500);
                         } catch (InterruptedException e) {
@@ -41,9 +36,6 @@ public class ParallelSearch {
         );
         producer.start();
         producer.join();
-        synchronized (LOCK) {
-            LOCK.notifyAll();
-        }
         System.out.println(consumer.getState());
     }
 }
