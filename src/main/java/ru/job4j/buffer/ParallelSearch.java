@@ -24,14 +24,12 @@ public class ParallelSearch {
                     for (int index = 0; index != 3; index++) {
                         try {
                             queue.offer(index);
-                            if (index == 2) {
-                                consumer.interrupt();
-                            }
                             Thread.sleep(500);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     }
+                    consumer.interrupt();
                 }
         );
         producer.start();
