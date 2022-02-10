@@ -18,9 +18,13 @@ public class SimpleBlockingQueueTest {
         final SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue<>(10);
         Thread producer = new Thread(
                 () -> {
-                    IntStream.range(0, 5).forEach(
-                            queue::offer
-                    );
+                    for (int i = 0; i < 5; i++) {
+                        try {
+                            queue.offer(i);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
         );
         producer.start();
