@@ -18,9 +18,5 @@ public class Test {
                     + newSortArray[index]
                     + "   index [" + index + "]");
         }
-        System.out.println("=================");
-        int elem = array[rand.nextInt(size)];
-        int indexElement = FindIndex.find(array, elem);
-        System.out.println("find elem: " + elem + " index = " + indexElement);
     }
 }
