@@ -15,10 +15,10 @@ public class Test {
         }
         System.out.println("\n========");
         int temp = Integer.MAX_VALUE;
-        for (int i = 0; i < array.length; i++) {
-            int el = Math.abs(array[i]);
+        for (int index = 0; index < array.length; index++) {
+            int el = Math.abs(array[index]);
             if (el < temp) {
-                temp = array[i];
+                temp = array[index];
             }
         }
         System.out.println(temp);
