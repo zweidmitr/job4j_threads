@@ -33,16 +33,7 @@ public class RolColSum {
         Sums[] result = new Sums[matrix.length];
 
         for (int row = 0; row < matrix.length; row++) {
-            int rowSum = 0;
-            int colSum = 0;
-            Sums ups = new Sums();
-            for (int col = 0; col < matrix[row].length; col++) {
-                rowSum += matrix[row][col];
-                colSum += matrix[col][row];
-            }
-            ups.setRowSum(rowSum);
-            ups.setColSum(colSum);
-            result[row] = ups;
+            result[row] = getSums(matrix, row);
         }
         return result;
     }
@@ -57,18 +48,22 @@ public class RolColSum {
 
     public static CompletableFuture<Sums> getTask(int[][] matrix, int row) {
         return CompletableFuture.supplyAsync(() -> {
-                    int rowSum = 0;
-                    int colSum = 0;
-                    Sums ups = new Sums();
-                    for (int col = 0; col < matrix[row].length; col++) {
-                        rowSum += matrix[row][col];
-                        colSum += matrix[col][row];
-                    }
-                    ups.setRowSum(rowSum);
-                    ups.setColSum(colSum);
-                    return ups;
+                    return getSums(matrix, row);
                 }
         );
+    }
+
+    private static Sums getSums(int[][] matrix, int row) {
+        int rowSum = 0;
+        int colSum = 0;
+        Sums ups = new Sums();
+        for (int col = 0; col < matrix[row].length; col++) {
+            rowSum += matrix[row][col];
+            colSum += matrix[col][row];
+        }
+        ups.setRowSum(rowSum);
+        ups.setColSum(colSum);
+        return ups;
     }
 
     public static class Sums {
