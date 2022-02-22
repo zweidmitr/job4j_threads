@@ -13,8 +13,5 @@ public class Test {
         for (int elem : array) {
             System.out.print(elem + " ");
         }
-        System.out.println("\n========");
-        int temp = Integer.MAX_VALUE;
-        System.out.println(temp);
     }
 }
