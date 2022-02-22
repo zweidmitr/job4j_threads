@@ -7,8 +7,8 @@ public class Test {
         int size = 150;
         int[] array = new int[size];
         Random rand = new Random();
-        for (int i = 0; i < array.length; i++) {
-            array[i] = rand.nextInt(size);
+        for (int index = 0; index < array.length; index++) {
+            array[index] = rand.nextInt(size);
         }
         for (int elem : array) {
             System.out.print(elem + " ");
