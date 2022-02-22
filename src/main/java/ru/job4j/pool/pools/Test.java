@@ -17,9 +17,6 @@ public class Test {
         int temp = Integer.MAX_VALUE;
         for (int index = 0; index < array.length; index++) {
             int el = Math.abs(array[index]);
-            if (el < temp) {
-                temp = array[index];
-            }
         }
         System.out.println(temp);
     }
