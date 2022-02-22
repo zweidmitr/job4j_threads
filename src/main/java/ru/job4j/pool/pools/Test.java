@@ -15,9 +15,6 @@ public class Test {
         }
         System.out.println("\n========");
         int temp = Integer.MAX_VALUE;
-        for (int index = 0; index < array.length; index++) {
-            int el = Math.abs(array[index]);
-        }
         System.out.println(temp);
     }
 }
