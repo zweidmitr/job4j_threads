@@ -10,8 +10,8 @@ public class Test {
         for (int index = 0; index < array.length; index++) {
             array[index] = rand.nextInt(size);
         }
-        for (int elem : array) {
-            System.out.print(elem + " ");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
         }
     }
 }
