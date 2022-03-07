@@ -2,6 +2,9 @@ package ru.job4j.pool.pools;
 
 import java.util.Random;
 
+/**
+ * Тестовый класс для знакомства с GIT - работа с консолью
+ */
 public class Test {
     public static void main(String[] args) {
         int size = 200;
