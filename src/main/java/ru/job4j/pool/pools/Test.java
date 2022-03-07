@@ -12,7 +12,7 @@ public class Test {
         }
         int count = 0;
         for (int i = 0; i < array.length; i++) {
-            System.out.printf("%04d ", array[i]);
+            System.out.printf("%03d ", array[i]);
             count++;
             if (count == 10) {
                 System.out.println();
